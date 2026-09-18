@@ -29,6 +29,14 @@ fi
 
 echo "[+] Hermes CLI detected: $(hermes --version 2>/dev/null || echo 'active')"
 
+# Check optional structural code intelligence tool (ast-grep)
+if ! command -v ast-grep >/dev/null 2>&1; then
+    if command -v npm >/dev/null 2>&1; then
+        echo "[*] Installing ast-grep CLI for structural AST intelligence..."
+        npm install -g @ast-grep/cli || true
+    fi
+fi
+
 # 2. Ensure ~/.hermes directories exist
 mkdir -p "$HERMES_DIR"
 mkdir -p "$HERMES_DIR/skills/autonomous-ai-agents"
