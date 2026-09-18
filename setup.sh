@@ -62,7 +62,50 @@ if [ ! -f "$HERMES_DIR/.env" ]; then
     echo "[!] Please edit $HERMES_DIR/.env and insert your API keys."
 fi
 
-# 7. Web Dashboard Information
+# 7. Deploy Dashboard Auto-start Daemon & Shell Wrapper
+echo "[*] Setting up Web Dashboard auto-start wrapper..."
+mkdir -p "$HOME/.local/bin"
+cp "$REPO_DIR/scripts/hermes-dashboard-daemon" "$HOME/.local/bin/hermes-dashboard-daemon"
+chmod +x "$HOME/.local/bin/hermes-dashboard-daemon"
+
+SHELL_RC="$HOME/.bashrc"
+[ -n "${ZSH_VERSION:-}" ] && SHELL_RC="$HOME/.zshrc"
+
+if ! grep -q "hermes-dashboard-daemon" "$SHELL_RC" 2>/dev/null; then
+    cat << 'EOF' >> "$SHELL_RC"
+
+# Auto-start Hermes Web Dashboard on port 9119 when running hermes
+hermes() {
+  local is_chat=1
+  if [ "$#" -gt 0 ]; then
+    case "$1" in
+      dashboard|config|setup|doctor|mcp|skills|update|version|--version|-v|--help|-h|-q|chat)
+        if [ "$1" != "chat" ] || [[ " $* " == *" -q "* ]]; then
+          is_chat=0
+        fi
+        ;;
+      *)
+        ;;
+    esac
+  fi
+
+  if [ -x "$HOME/.local/bin/hermes-dashboard-daemon" ]; then
+    "$HOME/.local/bin/hermes-dashboard-daemon"
+  fi
+
+  if [ "$is_chat" -eq 1 ]; then
+    echo -e "\033[1;32m┌────────────────────────────────────────────────────────────┐\033[0m"
+    echo -e "\033[1;32m│\033[0m  \033[1;36m🌐 Hermes Web Dashboard aktif:\033[0m \033[1;33mhttp://localhost:9119\033[0m      \033[1;32m│\033[0m"
+    echo -e "\033[1;32m└────────────────────────────────────────────────────────────┘\033[0m"
+  fi
+
+  command hermes "$@"
+}
+EOF
+    echo "[+] Shell wrapper added to $SHELL_RC."
+fi
+
+# 8. Web Dashboard Information
 echo "========================================================="
 echo "                  Setup Complete!                        "
 echo "========================================================="
