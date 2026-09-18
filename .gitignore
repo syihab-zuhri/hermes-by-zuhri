@@ -1,0 +1,23 @@
+# Sensitive environment & secrets
+.env
+*.env
+*.pem
+*.key
+*.token
+
+# Databases & runtime caches
+*.db
+*.db-wal
+*.db-shm
+*.log
+
+# Python & Node
+__pycache__/
+*.py[cod]
+*$py.class
+node_modules/
+.npm/
+
+# OS artifacts
+.DS_Store
+Thumbs.db
