@@ -53,6 +53,7 @@ Hermes Web Dashboard bawaan memiliki gaya visual retro-brutalist dengan font pix
 - **`autonomous-ai-agents/omp-workflows`**: Protokol operasional untuk Vibe, Loop, Advisor, Extended Context, dan script `loop_runner.py`.
 - **`software-development/agentic-coding-discipline`**: Pedoman modifikasi kode presisi, hash-anchoring mindset, dan verifikasi runtime.
 - **`software-development/ast-grep-code-surgery`**: Pencarian dan modifikasi kode berbasis AST (Abstract Syntax Tree) via `ast-grep` (imun terhadap spasi/format drift, ekstrak arsitektur proyek hemat 90% token).
+- **`software-development/threat-aware-security-engineering`**: Protokol triage malware defensif, audit supply-chain, deobfuscation static analysis, dan pemeriksaan persistensi sistem (diadaptasi dari kurasi *awesome-malware-analysis*).
 - **`software-development/shadcn-ui-bootstrap` & `shadcn-ui-patterns`**: Alur setup otomatis shadcn/ui dan aturan desain UI modern.
 - **`software-development/web-ssr-hydration-debugging`**: Penanganan bug SSR hydration, form state, dan filter searchable.
 - **`software-development/nextjs-classroom-api`**: Arsitektur realtime API aman, token hashing, dan mitigasi DoS relay.
@@ -145,10 +146,11 @@ hermes-by-zuhri/
     └── software-development/
         ├── agentic-coding-discipline/
         ├── ast-grep-code-surgery/
+        ├── nextjs-classroom-api/
         ├── shadcn-ui-bootstrap/
         ├── shadcn-ui-patterns/
-        ├── web-ssr-hydration-debugging/
-        └── nextjs-classroom-api/
+        ├── threat-aware-security-engineering/
+        └── web-ssr-hydration-debugging/
 ```
 
 ---
