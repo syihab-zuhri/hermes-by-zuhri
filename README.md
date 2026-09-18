@@ -1,17 +1,17 @@
 # Hermes Agent — OMP Enhanced Edition (by Zuhri)
 
-Distribusi konfigurasi, core behavioral prompt (`SOUL.md`), dan modul skill **Hermes Agent** (oleh Nous Research) yang telah dioptimasi dengan disiplin rekayasa software dan mode kerja **Oh My Pi (OMP)**.
+Distribusi konfigurasi, core behavioral prompt (`SOUL.md`), sistem skill rekayasa perangkat lunak, dan modernisasi UI/UX **Hermes Agent** (oleh Nous Research) yang diadaptasi dari filosofi eksekusi **Oh My Pi (OMP)** dan preset desain **shadcn `b1ZzrZbpw` (Mira Style)**.
 
-Repositori ini memungkinkan siapa pun memasang dan menggunakan Hermes Agent persis seperti konfigurasi operasional harian yang digunakan oleh Zuhri.
+Repositori ini memungkinkan siapa pun mereplikasi konfigurasi operasional harian yang digunakan oleh Zuhri ke mesin Linux/WSL/macOS mereka secara otomatis.
 
 ---
 
-## 🚀 Mengapa Adaptasi OMP (Oh My Pi)?
+## 🚀 Filosofi Rekayasa OMP (Oh My Pi)
 
 `oh-my-pi` (karya `can1357`) adalah AI coding agent berbasis terminal dengan performa native dan disiplin eksekusi sekelas IDE. Melalui repositori ini, prinsip dan alur kerja OMP ditanamkan langsung ke inti kepribadian dan sistem skill Hermes Agent:
 
 1. **User's Word is Absolute (Ground Truth)**
-   Kondisi error, anomali, atau fakta yang dilaporkan user dijadikan kebenaran mutlak. Hermes tidak memboroskan pemanggilan tool hanya untuk mengecek ulang hal yang sudah Anda laporkan.
+   Kondisi error, anomali, atau fakta yang dilaporkan user dijadikan kebenaran mutlak. Hermes tidak memboroskan pemanggilan tool hanya untuk mengecek ulang hal yang sudah dilaporkan.
 2. **Zero Stubs & Clean Cutover**
    Pantang meninggalkan placeholder, mock parsial, atau komentar `// TODO: implement later`. Semua kode diselesaikan secara utuh (*end-to-end*) sampai modul pemanggilnya (*callsites*) dan membersihkan sisa kode mati.
 3. **Snapshot Integrity & Precision Patching**
@@ -23,15 +23,26 @@ Repositori ini memungkinkan siapa pun memasang dan menggunakan Hermes Agent pers
 
 ---
 
+## 🎨 Modernisasi UI/UX Dashboard (Preset shadcn `b1ZzrZbpw` / Mira Style)
+
+Hermes Web Dashboard bawaan memiliki gaya visual retro-brutalist dengan font pixelated (*Mondwest*), sudut poligon terpotong (*notched clip-path*), dan teks kapital yang kaku. Repositori ini menyertakan modernisasi UI/UX penuh berbasis preset **shadcn `b1ZzrZbpw`**:
+
+- **Tipografi Inter & JetBrains Mono:** Seluruh antarmuka beralih ke font **Inter** yang bersih, modern, dan nyaman dibaca, dipadukan dengan **JetBrains Mono** untuk terminal dan blok kode.
+- **Lengkungan Halus (Smooth Radius `0.625rem`):** Menghilangkan efek notched sudut kasar pada header, sidebar, card, dan modal dialog, digantikan dengan sudut rounded modern.
+- **Navigasi Pill Lembut:** Sidebar navigasi mengadopsi pill button dengan efek hover dan active state subtil (*subtle menu accent*).
+- **Integritas Palet Warna:** Skema warna gelap khas Hermes tetap dipertahankan 100% tanpa merusak kontras visual.
+
+---
+
 ## ⚡ Fitur & Mode Kerja OMP yang Diadaptasi
 
 | Mode / Fitur | Deskripsi & Implementasi di Hermes |
 |---|---|
-| **Vibe Mode (`/vibe`)** | Mode eksekusi berkecepatan tinggi: memangkas tahap seremonial blueprint/TODO berlebih untuk tugas langsung, langsung membaca, memodifikasi, dan menguji kode. |
+| **Vibe Mode (`/vibe`)** | Mode eksekusi berkecepatan tinggi: memangkas seremonial blueprint/TODO berlebih untuk tugas langsung; langsung membaca, memodifikasi, dan menguji kode. |
 | **Autonomous Loop (`/loop`)** | Siklus otomasi *Diagnose → Edit → Test* menggunakan runner `scripts/loop_runner.py` (`--until '<cmd>'`) hingga perintah uji menghasilkan exit status `0`. |
 | **Advisor Mode (`/advisor`)** | Protokol review model kedua via `delegate_task` sebelum modifikasi skema database atau refactor arsitektur besar untuk mencegat regresi dan bug. |
 | **Extended Context (512K)** | Optimasi ambang batas kompresi (`threshold: 0.8`, `protect_last_n: 40`) untuk retensi konteks masif tanpa pemotongan riwayat dini. |
-| **Web Dashboard (Port 9119)** | Antarmuka web penuh Hermes untuk live chat, manajemen sesi, konfigurasi MCP, dan analitik token via `http://localhost:9119`. |
+| **Auto-start Web Dashboard (Port 9119)** | Daemon otomatis (`hermes-dashboard-daemon`) yang langsung menyalakan server web dashboard di latar belakang setiap kali perintah `hermes` dipanggil di terminal, lengkap dengan banner URL. |
 | **Collab & Multi-Surface** | Kolaborasi antar-antarmuka secara simultan (CLI Terminal, Web UI, dan Messaging Gateway seperti Telegram/Discord) dengan sinkronisasi database lokal. |
 | **Skillful** | Manajemen skill cerdas: injeksi katalog ringkas di system prompt dan pemuatan konten skill penuh secara dinamis saat dibutuhkan. |
 
@@ -66,11 +77,13 @@ chmod +x setup.sh
 ```
 
 Skrip `setup.sh` akan secara otomatis:
-- Memeriksa instalasi Hermes Agent (mengunduh jika belum ada).
-- Menanamkan `SOUL.md` (prinsip OMP) ke `~/.hermes/SOUL.md`.
-- Menyalin seluruh custom skills ke `~/.hermes/skills/`.
-- Menerapkan konfigurasi Extended Context (512K) dan guardrails.
-- Menyiapkan template konfigurasi dan environment `.env`.
+1. Memeriksa instalasi Hermes Agent (mengunduh otomatis jika belum ada).
+2. Menanamkan `SOUL.md` (prinsip OMP) ke `~/.hermes/SOUL.md`.
+3. Menyalin seluruh custom skills ke `~/.hermes/skills/`.
+4. Menerapkan konfigurasi Extended Context (512K) dan guardrails.
+5. Memasang daemon auto-start dashboard (`~/.local/bin/hermes-dashboard-daemon`) dan banner notifikasi di `~/.bashrc`.
+6. Menerapkan preset UI/UX Mira (`ui-preset-mira`) dan me-rebuild dashboard web secara otomatis.
+7. Menyiapkan template konfigurasi dan environment `.env`.
 
 ### 3. Masukkan Kredensial LLM
 Buka file `~/.hermes/.env` dan tambahkan API key Anda:
@@ -87,17 +100,20 @@ OPENAI_API_KEY=sk-...
 ## 🖥️ Menjalankan Hermes
 
 ### Interaktif di Terminal (CLI)
+Cukup ketik:
 ```bash
 hermes
 ```
-
-### Membuka Web Dashboard
-Jalankan server dashboard di background:
-```bash
-hermes dashboard --skip-build --no-open --port 9119
+Saat perintah dijalankan, banner aktif akan muncul di atas chat dan server web dashboard otomatis menyala di background:
+```text
+┌────────────────────────────────────────────────────────────┐
+│  🌐 Hermes Web Dashboard aktif: http://localhost:9119      │
+└────────────────────────────────────────────────────────────┘
 ```
-Lalu buka browser Anda di:
-👉 **`http://localhost:9119`**
+
+### Membuka di Browser
+Buka browser Anda dan kunjungi:
+👉 **`http://localhost:9119`** (atau `http://127.0.0.1:9119`)
 
 ---
 
@@ -112,6 +128,13 @@ hermes-by-zuhri/
 ├── config/
 │   ├── config.example.yaml # Template konfigurasi optimal Hermes
 │   └── .env.example        # Template variabel lingkungan
+├── scripts/
+│   └── hermes-dashboard-daemon # Daemon background auto-start dashboard
+├── ui-preset-mira/         # Modul UI/UX preset shadcn b1ZzrZbpw
+│   ├── apply-mira.sh       # Skrip kompilasi & penerapan UI
+│   ├── index.css           # Global stylesheet modern (Inter + smooth radius)
+│   ├── presets.ts          # Typography & layout tokens
+│   └── utils.ts            # Helper font bindings
 └── skills/                 # Modul skill kustom & adaptasi OMP
     ├── autonomous-ai-agents/
     │   ├── omp-workflows/

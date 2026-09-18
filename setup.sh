@@ -105,7 +105,13 @@ EOF
     echo "[+] Shell wrapper added to $SHELL_RC."
 fi
 
-# 8. Web Dashboard Information
+# 8. Apply Mira Modern UI/UX Preset (shadcn preset b1ZzrZbpw)
+echo "[*] Applying Mira UI/UX preset to Web Dashboard..."
+if [ -f "$REPO_DIR/ui-preset-mira/apply-mira.sh" ]; then
+    bash "$REPO_DIR/ui-preset-mira/apply-mira.sh" || true
+fi
+
+# 9. Web Dashboard Information
 echo "========================================================="
 echo "                  Setup Complete!                        "
 echo "========================================================="
